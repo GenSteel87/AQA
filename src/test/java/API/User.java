@@ -1,6 +1,6 @@
 package API;
 
-public class NewUser {
+public class User {
     public String getEmail() {
         return email;
     }
@@ -11,7 +11,7 @@ public class NewUser {
 
     private String email;
 
-    public NewUser(String email, String password) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }

@@ -6,39 +6,37 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
-public class RegistrationByAPI {
+public class Registration {
     @Test
     public void testAPI(){
 
-        NewUser newUser = new NewUser("eve.holt@reqres.in", "pistol");
+        User user = new User("eve.holt@reqres.in", "pistol");
 
         String getUrl = "https://reqres.in";
         String basePathReg = "/api/register";
         String basePathDel = "/api/users/";
 
-        Response res = given()
+        Response creationResponse = given()
                 .baseUri(getUrl)
                 .contentType(ContentType.JSON)
-                .body(newUser)
+                .body(user)
                 .basePath(basePathReg)
                 .post();
 
-        Assert.assertEquals(res.getStatusCode(),200 );
-
-        Resp expectedRes = new Resp(4, "QpwL5tke4Pnpja7X4");
-        Resp actualRes = res.getBody().as(Resp.class);
+        Assert.assertEquals(creationResponse.getStatusCode(),200 );
+        ResponseResult expectedRes = new ResponseResult(4, "QpwL5tke4Pnpja7X4");
+        ResponseResult actualRes = creationResponse.getBody().as(ResponseResult.class);
         Assert.assertEquals(actualRes.getId(),expectedRes.getId());
+        System.out.println("User creation - response status is " + creationResponse.getStatusCode());
 
-        System.out.println("User creation - response status is " + res.getStatusCode());
-
-        Response del = given()
+        Response deleteResponse = given()
                 .baseUri(getUrl)
                 .contentType(ContentType.JSON)
-                .body(newUser)
+                .body(user)
                 .basePath(basePathDel + actualRes.getId())
                 .delete();
 
-        Assert.assertEquals(del.getStatusCode(),204 );
+        Assert.assertEquals(deleteResponse.getStatusCode(),204 );
 
 
 

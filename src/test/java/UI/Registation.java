@@ -25,7 +25,6 @@ public class Registation {
         ((WebElement) emailField).sendKeys(user.getEmail());
         Thread.sleep(3000);
 
-
         WebElement passwordField = driver.findElement(By.xpath("//input [@type = 'password']"));
         passwordField.click();
         ((WebElement) passwordField).sendKeys(user.getPassword());

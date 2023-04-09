@@ -1,9 +1,7 @@
 package API;
 
-import java.util.Objects;
-
-public class Resp {
-    public Resp(Integer id, String token) {
+public class ResponseResult {
+    public ResponseResult(Integer id, String token) {
         this.id = id;
         this.token = token;
     }
@@ -27,7 +25,7 @@ public class Resp {
     private Integer id;
     private String token;
 
-    public Resp(){
+    public ResponseResult(){
 
     }
 
