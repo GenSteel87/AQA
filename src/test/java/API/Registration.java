@@ -27,7 +27,6 @@ public class Registration {
         ResponseResult expectedRes = new ResponseResult(4, "QpwL5tke4Pnpja7X4");
         ResponseResult actualRes = creationResponse.getBody().as(ResponseResult.class);
         Assert.assertEquals(actualRes.getId(),expectedRes.getId());
-        System.out.println("User creation - response status is " + creationResponse.getStatusCode());
 
         Response deleteResponse = given()
                 .baseUri(getUrl)
